@@ -1,0 +1,14 @@
+{
+  "name": "MonadMonster",
+  "short_name": "MonadMonster",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#8A4FFF",
+  "background_color": "#8A4FFF",
+  "display": "standalone"
+}
