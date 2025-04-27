@@ -31,8 +31,8 @@ function FloatingLogo({ position, size, delay, duration, opacity, rotation, blur
       }}
     >
       <Image
-        src="/images/momon-logo.png"
-        alt="Floating Momon Logo"
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/android-chrome-512x512-mzpZcLlZpfmk9fYVHTXFOA1kfExO9k.png"
+        alt="Floating BNB Logo"
         width={size}
         height={size}
         className="select-none pointer-events-none"
@@ -49,7 +49,7 @@ export function FloatingLogos() {
 
   useEffect(() => {
     // Создаем несколько плавающих логотипов
-    const logoCount = isMobile ? 4 : 6
+    const logoCount = isMobile ? 3 : 5 // Уменьшаем для лучшей производительности
 
     // Размер логотипа
     const minSize = 20

@@ -1,12 +1,11 @@
 "use client"
-
-import Image from "next/image"
 import Link from "next/link"
 import { useI18n } from "@/lib/i18n-context"
 import { MobileNav } from "@/components/mobile-nav"
 import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
 import { TwitterIcon, DiscordIcon, TelegramIcon } from "@/components/social-icons"
+import { BnbLogo } from "@/components/bnb-logo"
 
 interface HeaderProps {
   showNavigation?: boolean
@@ -34,52 +33,44 @@ export function Header({ showNavigation = true }: HeaderProps) {
 
   // Социальные сети с правильными ссылками
   const socialLinks = [
-    { icon: <TwitterIcon className="w-6 h-6" />, href: "https://x.com/MonadMonster", label: "Twitter" },
-    { icon: <DiscordIcon className="w-6 h-6" />, href: "https://discord.gg/8f35EBkX", label: "Discord" },
-    { icon: <TelegramIcon className="w-6 h-6" />, href: "https://web.telegram.org/a/#7923585285", label: "Telegram" },
+    { icon: <TwitterIcon className="w-4 h-4 sm:w-5 sm:h-5" />, href: "https://x.com/BNBMonster", label: "Twitter" },
+    { icon: <DiscordIcon className="w-5 h-5 sm:w-6 sm:h-6" />, href: "https://discord.gg/8f35EBkX", label: "Discord" },
+    {
+      icon: <TelegramIcon className="w-5 h-5 sm:w-6 sm:h-6" />,
+      href: "https://web.telegram.org/a/#7923585285",
+      label: "Telegram",
+    },
   ]
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-gradient-to-r from-purple-900/80 to-indigo-900/80 border-b border-white/10 shadow-lg">
-      <div className="container mx-auto py-4 px-4">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-gradient-to-r from-yellow-900/80 to-yellow-800/80 border-b border-white/10 shadow-lg">
+      <div className="container mx-auto py-3 sm:py-4 px-3 sm:px-4">
         <div className="flex justify-between items-center">
           <motion.div initial="initial" animate="animate" whileHover="whileHover" variants={logoAnimation}>
-            <Link href="/" className="flex items-center gap-3">
-              <div className="relative w-12 h-12 overflow-hidden rounded-full border-2 border-pink-500/50 shadow-lg shadow-pink-500/20">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-d32hBpROUhubCe7Q2v3TjQIcJmDd8U.png"
-                  alt="Momon Logo"
-                  fill
-                  className="object-contain p-1"
-                  sizes="48px"
-                  priority
-                />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300">
-                  MonadMonster
-                </h1>
-                <p className="text-xs text-pink-300/80 -mt-1">NFT Collection</p>
-              </div>
+            <Link href="/" className="flex items-center gap-2">
+              <BnbLogo size={28} withText={false} />
+              <span className="font-heading font-bold text-base sm:text-lg hidden md:inline-block text-yellow-400">
+                BNBMonster
+              </span>
             </Link>
           </motion.div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-6">
             {/* Социальные сети в хедере */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 sm:gap-4">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.href}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-pink-400 transition-colors duration-200"
+                  className="text-white/80 hover:text-yellow-400 transition-colors duration-200"
                   variants={socialIconAnimation}
                   whileHover="whileHover"
                   whileTap="whileTap"
                   aria-label={social.label}
                 >
-                  <div className="p-2 rounded-full bg-purple-800/50 hover:bg-purple-700/50 transition-colors duration-200 shadow-md hover:shadow-pink-500/20">
+                  <div className="p-1.5 sm:p-2 rounded-full bg-yellow-800/50 hover:bg-yellow-700/50 transition-colors duration-200 shadow-md hover:shadow-yellow-500/20">
                     {social.icon}
                   </div>
                 </motion.a>
@@ -88,7 +79,7 @@ export function Header({ showNavigation = true }: HeaderProps) {
 
             {showNavigation && (
               <>
-                <nav className="hidden md:flex items-center gap-8">
+                <nav className="hidden md:flex items-center gap-4 sm:gap-8">
                   {[
                     { href: "/", label: translations.common?.home || "Home" },
                     { href: "/collection", label: translations.common?.collection || "Collection" },
@@ -99,14 +90,14 @@ export function Header({ showNavigation = true }: HeaderProps) {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`relative font-medium transition-colors duration-200 hover:text-pink-400 ${
-                        isActive(link.href) ? "text-pink-400" : "text-white/90"
+                      className={`relative font-medium transition-colors duration-200 hover:text-yellow-400 text-sm sm:text-base ${
+                        isActive(link.href) ? "text-yellow-400" : "text-white/90"
                       }`}
                     >
                       {link.label}
                       {isActive(link.href) && (
                         <motion.span
-                          className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-gradient-to-r from-pink-500 to-purple-500"
+                          className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-gradient-to-r from-yellow-500 to-yellow-600"
                           layoutId="activeNavIndicator"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}

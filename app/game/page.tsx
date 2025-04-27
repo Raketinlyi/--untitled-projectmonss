@@ -70,9 +70,9 @@ function ParallaxBackground() {
         }}
       />
 
-      {/* Градиентная подсветка */}
+      {/* Градиентная подсветка - изменена на желтую */}
       <div
-        className="absolute inset-0 opacity-20 bg-gradient-radial from-purple-900 via-transparent to-transparent"
+        className="absolute inset-0 opacity-20 bg-gradient-radial from-yellow-900 via-transparent to-transparent"
         style={{
           transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
           width: "200%",
@@ -100,7 +100,7 @@ function ParallaxBackground() {
         />
       ))}
 
-      {/* Туманности */}
+      {/* Туманности - изменены на желтые */}
       {Array.from({ length: 3 }).map((_, i) => (
         <div
           key={`nebula-${i}`}
@@ -111,7 +111,7 @@ function ParallaxBackground() {
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
             opacity: Math.random() * 0.1 + 0.05,
-            background: `radial-gradient(circle, rgba(${Math.random() * 100 + 100}, ${Math.random() * 50}, ${Math.random() * 200 + 50}, 0.3) 0%, rgba(0,0,0,0) 70%)`,
+            background: `radial-gradient(circle, rgba(${Math.random() * 100 + 155}, ${Math.random() * 100 + 100}, 0, 0.3) 0%, rgba(0,0,0,0) 70%)`,
             transform: `translate(${mousePosition.x * (0.2 + Math.random() * 0.2)}px, ${mousePosition.y * (0.2 + Math.random() * 0.2)}px)`,
             transition: "transform 0.3s ease-out",
             filter: "blur(30px)",
@@ -196,14 +196,14 @@ function AnimatedHearts({ lives, maxLives = 3 }) {
   )
 }
 
-// Компонент для энергетической полосы
+// Компонент для энергетической полосы - изменен на желтый
 function EnergyBar({ energy, maxEnergy, className = "" }) {
   const percentage = (energy / maxEnergy) * 100
 
   return (
     <div className={`relative h-2 bg-black/50 rounded-full overflow-hidden ${className}`}>
       <motion.div
-        className="h-full bg-gradient-to-r from-purple-600 to-blue-500"
+        className="h-full bg-gradient-to-r from-yellow-600 to-amber-500"
         initial={{ width: 0 }}
         animate={{ width: `${percentage}%` }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -221,7 +221,7 @@ function EnergyBar({ energy, maxEnergy, className = "" }) {
   )
 }
 
-// Компонент для кнопки способности
+// Компонент для кнопки способности - изменен на желтый
 function AbilityButton({ icon, name, cost, energy, active, onClick, disabled }) {
   const isAffordable = energy >= cost && !active && !disabled
 
@@ -231,7 +231,7 @@ function AbilityButton({ icon, name, cost, energy, active, onClick, disabled }) 
       disabled={!isAffordable}
       className={`relative flex-1 py-1 h-14 rounded-lg overflow-hidden ${
         isAffordable
-          ? "bg-gradient-to-br from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600"
+          ? "bg-gradient-to-br from-yellow-600 to-amber-700 hover:from-yellow-500 hover:to-amber-600"
           : "bg-gray-800/70 text-gray-400"
       }`}
       whileTap={isAffordable ? { scale: 0.95 } : {}}
@@ -266,7 +266,7 @@ function AbilityButton({ icon, name, cost, energy, active, onClick, disabled }) 
   )
 }
 
-// Компонент для отображения бонуса
+// Компонент для отображения бонуса - изменен на желтый
 function BonusMessage({ bonusType, show }) {
   // Получаем цвет и текст бонуса
   const getBonusColor = (type) => {
@@ -278,11 +278,11 @@ function BonusMessage({ bonusType, show }) {
       case "slowdown":
         return "from-blue-500 to-cyan-600"
       case "shield":
-        return "from-indigo-500 to-blue-600"
+        return "from-yellow-500 to-amber-600"
       case "energy":
-        return "from-purple-500 to-fuchsia-600"
+        return "from-yellow-500 to-amber-600"
       default:
-        return "from-green-500 to-emerald-600"
+        return "from-yellow-500 to-amber-600"
     }
   }
 
@@ -359,7 +359,7 @@ function BonusMessage({ bonusType, show }) {
   )
 }
 
-// Компонент для отображения предупреждения о боссе
+// Компонент для отображения предупреждения о боссе - изменен на желтый
 function BossWarning({ bossInfo, show }) {
   return (
     <AnimatePresence>
@@ -368,23 +368,23 @@ function BossWarning({ bossInfo, show }) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="absolute top-2 left-0 right-0 z-30 mx-auto w-auto max-w-[90%] bg-gradient-to-r from-red-600 to-red-800 p-2 rounded-lg text-white text-center pointer-events-none shadow-lg border border-red-400"
+          className="absolute top-2 left-0 right-0 z-30 mx-auto w-auto max-w-[90%] bg-gradient-to-r from-yellow-600 to-amber-800 p-2 rounded-lg text-white text-center pointer-events-none shadow-lg border border-yellow-400"
           style={{ transform: "translateX(-50%)", left: "50%" }}
         >
           <div className="flex flex-col items-center justify-center">
             <div className="flex items-center justify-center gap-2 mb-1">
-              <AlertTriangle className="w-4 h-4 text-red-200" />
+              <AlertTriangle className="w-4 h-4 text-yellow-200" />
               <h3 className="text-sm font-bold text-white">{bossInfo.name}</h3>
-              <AlertTriangle className="w-4 h-4 text-red-200" />
+              <AlertTriangle className="w-4 h-4 text-yellow-200" />
             </div>
-            <p className="text-xs text-red-200">{bossInfo.description}</p>
+            <p className="text-xs text-yellow-200">{bossInfo.description}</p>
           </div>
 
           {/* Пульсирующая рамка */}
           <motion.div
-            className="absolute inset-0 rounded-lg border-2 border-red-300"
+            className="absolute inset-0 rounded-lg border-2 border-yellow-300"
             animate={{
-              boxShadow: ["0 0 0 0 rgba(255,0,0,0)", "0 0 0 4px rgba(255,0,0,0.3)", "0 0 0 0 rgba(255,0,0,0)"],
+              boxShadow: ["0 0 0 0 rgba(255,200,0,0)", "0 0 0 4px rgba(255,200,0,0.3)", "0 0 0 0 rgba(255,200,0,0)"],
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
           />
@@ -426,7 +426,7 @@ function DifficultyWarning({ monstersPerWave, show, text }) {
   )
 }
 
-// Компонент для отображения комбо
+// Компонент для отображения комбо - изменен на желтый
 function ComboDisplay({ comboCount, comboMultiplier }) {
   const isActive = comboCount > 1
 
@@ -462,7 +462,7 @@ function ComboDisplay({ comboCount, comboMultiplier }) {
   )
 }
 
-// Компонент для отображения информации о боссе
+// Компонент для отображения информации о боссе - изменен на желтый
 function BossDisplay({ currentBoss, bossInfo }) {
   return (
     <AnimatePresence>
@@ -471,18 +471,18 @@ function BossDisplay({ currentBoss, bossInfo }) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="h-6 flex items-center bg-gradient-to-r from-purple-700 to-indigo-800 border border-purple-500/50 rounded-md px-2 min-w-[100px] transition-colors duration-300 shadow-md"
+          className="h-6 flex items-center bg-gradient-to-r from-yellow-700 to-amber-800 border border-yellow-500/50 rounded-md px-2 min-w-[100px] transition-colors duration-300 shadow-md"
         >
           <div className="flex items-center gap-1">
-            <Crown className="w-3 h-3 text-purple-300" />
+            <Crown className="w-3 h-3 text-yellow-300" />
             <span className="text-white text-xs font-medium">{bossInfo.name}</span>
           </div>
 
           {/* Пульсирующий эффект */}
           <motion.div
-            className="absolute inset-0 rounded-md border border-purple-400"
+            className="absolute inset-0 rounded-md border border-yellow-400"
             animate={{
-              boxShadow: ["0 0 0 0 rgba(147,51,234,0)", "0 0 0 3px rgba(147,51,234,0.3)", "0 0 0 0 rgba(147,51,234,0)"],
+              boxShadow: ["0 0 0 0 rgba(234,179,8,0)", "0 0 0 3px rgba(234,179,8,0.3)", "0 0 0 0 rgba(234,179,8,0)"],
             }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
           />
@@ -501,7 +501,7 @@ function DifficultyDisplay({ difficultyLevel, locale }) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="h-6 flex items-center bg-gradient-to-r from-amber-700 to-orange-800 border border-yellow-500/50 rounded-md px-2 min-w-[60px] transition-colors duration-300 shadow-md"
+          className="h-6 flex items-center bg-gradient-to-r from-amber-700 to-yellow-800 border border-yellow-500/50 rounded-md px-2 min-w-[60px] transition-colors duration-300 shadow-md"
         >
           <div className="flex items-center gap-1">
             <Star className="w-3 h-3 text-yellow-300" />
@@ -1714,7 +1714,7 @@ export default function MonsterDefenderGame() {
     const isCurrentlyFullscreen = !!(
       document.fullscreenElement ||
       (document as any).webkitFullscreenElement ||
-      (document as any).mozFullScreenElement ||
+      (document as any).mozFullscreenElement ||
       (document as any).msFullscreenElement
     )
 
@@ -1784,34 +1784,6 @@ export default function MonsterDefenderGame() {
     }
   }
 
-  // Добавим также эффект для отслеживания изменений полноэкранного режима
-  useEffect(() => {
-    // Функция для обработки изменения полноэкранного режима
-    const handleFullscreenChange = () => {
-      const isFullscreenNow = !!(
-        document.fullscreenElement ||
-        (document as any).webkitFullscreenElement ||
-        (document as any).mozFullScreenElement ||
-        (document as any).msFullscreenElement
-      )
-      setIsFullscreen(isFullscreenNow)
-    }
-
-    // Добавляем слушатели событий для разных браузеров
-    document.addEventListener("fullscreenchange", handleFullscreenChange)
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange)
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange)
-    document.addEventListener("MSFullscreenChange", handleFullscreenChange)
-
-    // Очищаем слушатели при размонтировании
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange)
-      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange)
-      document.removeEventListener("mozfullscreenchange", handleFullscreenChange)
-      document.removeEventListener("MSFullscreenChange", handleFullscreenChange)
-    }
-  }, [])
-
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-black p-2 pt-0 relative overflow-hidden">
       {/* Добавляем параллакс-фон */}
@@ -1848,12 +1820,12 @@ export default function MonsterDefenderGame() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="flex justify-between items-center w-full max-w-md mt-1 mb-0 px-2 bg-gradient-to-r from-purple-900/90 to-indigo-900/90 rounded-lg h-10 shadow-lg backdrop-blur-sm"
+        className="flex justify-between items-center w-full max-w-md mt-1 mb-0 px-2 bg-gradient-to-r from-yellow-900/90 to-amber-900/90 rounded-lg h-10 shadow-lg backdrop-blur-sm"
       >
         <div className="flex items-center">
           <AnimatedButton
             onClick={handleBackToHome}
-            className="p-0 h-8 w-8 mr-1 rounded-full bg-purple-800/50 hover:bg-purple-700/70 flex items-center justify-center"
+            className="p-0 h-8 w-8 mr-1 rounded-full bg-yellow-800/50 hover:bg-yellow-700/70 flex items-center justify-center"
             aria-label={texts.backToHome}
           >
             <ArrowLeft className="w-4 h-4 text-white" />
@@ -1871,7 +1843,7 @@ export default function MonsterDefenderGame() {
 
         {/* Энергия в верхней панели */}
         <div className="flex items-center bg-black/30 px-2 py-1 rounded-md">
-          <Zap className="w-4 h-4 text-purple-400 mr-1" />
+          <Zap className="w-4 h-4 text-yellow-400 mr-1" />
           <span className="text-white text-xs">
             {energy}/{maxEnergy}
           </span>
@@ -1881,7 +1853,7 @@ export default function MonsterDefenderGame() {
         <div className="flex items-center gap-1">
           <AnimatedButton
             onClick={handleToggleMute}
-            className="text-white bg-purple-800/50 hover:bg-purple-700/70 w-8 h-8 p-0 rounded-full flex items-center justify-center"
+            className="text-white bg-yellow-800/50 hover:bg-yellow-700/70 w-8 h-8 p-0 rounded-full flex items-center justify-center"
             aria-label={muted ? texts.unmuteSound : texts.muteSound}
           >
             {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -1889,7 +1861,7 @@ export default function MonsterDefenderGame() {
 
           <AnimatedButton
             onClick={toggleFullscreen}
-            className="text-white bg-purple-800/50 hover:bg-purple-700/70 w-8 h-8 p-0 rounded-full flex items-center justify-center"
+            className="text-white bg-yellow-800/50 hover:bg-yellow-700/70 w-8 h-8 p-0 rounded-full flex items-center justify-center"
             aria-label={isFullscreen ? "Выйти из полноэкранного режима" : "Полноэкранный режим"}
           >
             {isFullscreen ? (
@@ -1950,7 +1922,7 @@ export default function MonsterDefenderGame() {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={`relative bg-gradient-to-b from-indigo-900/70 to-purple-900/70 rounded-lg overflow-hidden border-2 border-indigo-700/70 w-full max-w-md canvas-container shadow-xl ${
+        className={`relative bg-gradient-to-b from-yellow-900/70 to-amber-900/70 rounded-lg overflow-hidden border-2 border-yellow-700/70 w-full max-w-md canvas-container shadow-xl ${
           isMobile && isLandscape ? "landscape-mode" : ""
         }`}
         style={{
@@ -1975,33 +1947,20 @@ export default function MonsterDefenderGame() {
           <EnergyBar energy={energy} maxEnergy={maxEnergy} className="absolute bottom-0 left-0 right-0" />
         )}
 
-        {/* Mobile landscape controls */}
-        {isMobile && isLandscape && gameStarted && (
-          <div className="absolute bottom-4 right-4 flex gap-2">
-            <AnimatedButton
-              onClick={() => handleToggleMute()}
-              className="game-control-button bg-black/50 text-white rounded-full w-12 h-12 flex items-center justify-center"
-              aria-label={muted ? texts.unmuteSound : texts.muteSound}
-            >
-              {muted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
-            </AnimatedButton>
-          </div>
-        )}
-
         {/* Game state overlays */}
         {!gameStarted && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-black/80 to-purple-900/80 backdrop-blur-sm">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-black/80 to-yellow-900/80 backdrop-blur-sm">
             {gameOver ? (
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="text-center p-6 bg-black/50 rounded-xl border border-purple-500/30 shadow-xl max-w-xs"
+                className="text-center p-6 bg-black/50 rounded-xl border border-yellow-500/30 shadow-xl max-w-xs"
               >
                 <motion.h2
                   initial={{ y: -20 }}
                   animate={{ y: 0 }}
-                  className="text-3xl font-bold text-white mb-3 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent"
+                  className="text-3xl font-bold text-white mb-3 bg-gradient-to-r from-yellow-500 to-amber-500 bg-clip-text text-transparent"
                 >
                   {texts.gameOver}
                 </motion.h2>
@@ -2031,7 +1990,7 @@ export default function MonsterDefenderGame() {
                 <div className="flex flex-col sm:flex-row gap-2 justify-center mb-2">
                   <AnimatedButton
                     onClick={handleRestartGame}
-                    className="bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600 text-white py-2 px-4 rounded-lg shadow-lg"
+                    className="bg-gradient-to-r from-yellow-600 to-amber-700 hover:from-yellow-500 hover:to-amber-600 text-white py-2 px-4 rounded-lg shadow-lg"
                   >
                     <div className="flex items-center justify-center">
                       <RotateCcw className="w-4 h-4 mr-2" />
@@ -2051,7 +2010,7 @@ export default function MonsterDefenderGame() {
 
                   <AnimatedButton
                     onClick={() => setShowAchievements(true)}
-                    className="bg-gradient-to-r from-purple-600 to-fuchsia-700 hover:from-purple-500 hover:to-fuchsia-600 text-white py-2 px-4 rounded-lg shadow-lg"
+                    className="bg-gradient-to-r from-yellow-600 to-amber-700 hover:from-yellow-500 hover:to-amber-600 text-white py-2 px-4 rounded-lg shadow-lg"
                   >
                     <div className="flex items-center justify-center">
                       <Medal className="w-4 h-4 mr-2" />
@@ -2065,12 +2024,12 @@ export default function MonsterDefenderGame() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="text-center p-6 bg-black/50 rounded-xl border border-purple-500/30 shadow-xl max-w-xs"
+                className="text-center p-6 bg-black/50 rounded-xl border border-yellow-500/30 shadow-xl max-w-xs"
               >
                 <motion.h2
                   initial={{ y: -20 }}
                   animate={{ y: 0 }}
-                  className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
+                  className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-yellow-500 to-amber-500 bg-clip-text text-transparent"
                 >
                   {texts.readyToPlay}
                 </motion.h2>
@@ -2083,7 +2042,7 @@ export default function MonsterDefenderGame() {
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.3, type: "spring" }}
-                  className="bg-gradient-to-r from-pink-500 to-purple-600 p-3 rounded-lg mb-6 shadow-lg shadow-pink-500/30"
+                  className="bg-gradient-to-r from-yellow-500 to-amber-600 p-3 rounded-lg mb-6 shadow-lg shadow-yellow-500/30"
                 >
                   <div className="flex items-center justify-center gap-2">
                     <motion.div
@@ -2115,7 +2074,7 @@ export default function MonsterDefenderGame() {
 
                 <AnimatedButton
                   onClick={handleStartGame}
-                  className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-500 hover:to-emerald-600 text-white py-3 px-8 rounded-lg text-lg font-bold shadow-lg shadow-green-500/30"
+                  className="bg-gradient-to-r from-yellow-600 to-amber-700 hover:from-yellow-500 hover:to-amber-600 text-white py-3 px-8 rounded-lg text-lg font-bold shadow-lg shadow-yellow-500/30"
                 >
                   <motion.div
                     animate={{

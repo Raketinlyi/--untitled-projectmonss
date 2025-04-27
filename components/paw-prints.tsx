@@ -150,11 +150,11 @@ export function PawPrints() {
             className="flex items-center justify-center"
           >
             <svg viewBox="0 0 100 100" className="w-full h-full" aria-hidden="true">
-              <circle cx="20" cy="15" r="10" fill="rgba(236, 72, 153, 0.6)" />
-              <circle cx="40" cy="10" r="10" fill="rgba(236, 72, 153, 0.6)" />
-              <circle cx="60" cy="15" r="10" fill="rgba(236, 72, 153, 0.6)" />
-              <circle cx="80" cy="25" r="10" fill="rgba(236, 72, 153, 0.6)" />
-              <ellipse cx="40" cy="70" rx="25" ry="25" fill="rgba(236, 72, 153, 0.6)" />
+              <circle cx="20" cy="15" r="10" fill="rgba(255, 204, 0, 0.6)" />
+              <circle cx="40" cy="10" r="10" fill="rgba(255, 204, 0, 0.6)" />
+              <circle cx="60" cy="15" r="10" fill="rgba(255, 204, 0, 0.6)" />
+              <circle cx="80" cy="25" r="10" fill="rgba(255, 204, 0, 0.6)" />
+              <ellipse cx="40" cy="70" rx="25" ry="25" fill="rgba(255, 204, 0, 0.6)" />
             </svg>
           </motion.div>
         ))}

@@ -38,7 +38,7 @@ function Monster({ src, size, position, delay, duration, opacity, rotation, scal
         animationDuration: `${duration}s`,
         opacity,
         transform: `rotate(${rotation}deg) scale(${scale})`,
-        filter: "drop-shadow(0 0 8px rgba(255, 105, 180, 0.3))",
+        filter: "drop-shadow(0 0 8px rgba(255, 204, 0, 0.3))",
         zIndex: Math.floor(opacity * 10), // Устанавливаем z-index на основе прозрачности
       }}
     >
@@ -61,7 +61,7 @@ export function MonsterBackground() {
 
   useEffect(() => {
     // Адаптивное количество монстриков
-    const monsterCount = isMobile ? 12 : 20
+    const monsterCount = isMobile ? 8 : 15 // Уменьшаем для лучшей производительности
 
     // Создаем массив монстриков с улучшенными случайными параметрами
     const newMonsters: MonsterProps[] = []

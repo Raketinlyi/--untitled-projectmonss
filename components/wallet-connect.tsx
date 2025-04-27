@@ -85,7 +85,7 @@ export function WalletConnect() {
         className={
           address
             ? "bg-green-600 hover:bg-green-700 text-white"
-            : "border-purple-500 text-purple-300 hover:bg-purple-500/20"
+            : "border-yellow-500 text-yellow-300 hover:bg-yellow-500/20"
         }
         disabled={isConnecting}
       >

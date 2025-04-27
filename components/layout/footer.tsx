@@ -2,10 +2,10 @@
 
 import { useI18n } from "@/lib/i18n-context"
 import Link from "next/link"
-import Image from "next/image"
 import { Heart } from "lucide-react"
 import { TwitterIcon, DiscordIcon, TelegramIcon } from "@/components/social-icons"
 import { motion } from "framer-motion"
+import { BnbMonsterLogo } from "@/components/bnb-monster-logo"
 
 export function Footer() {
   const { translations, locale } = useI18n()
@@ -41,45 +41,49 @@ export function Footer() {
   // Социальные сети с правильными ссылками
   const socialLinks = [
     {
-      icon: <TwitterIcon className="w-8 h-8 md:w-10 md:h-10" />,
+      icon: <TwitterIcon className="w-6 h-6 md:w-8 md:h-8" />,
       href: "https://x.com/MonadMonster",
       label: "Twitter",
-      color: "from-blue-400 to-blue-600",
+      color: "from-yellow-400 to-amber-600",
     },
     {
-      icon: <DiscordIcon className="w-8 h-8 md:w-10 md:h-10" />,
+      icon: <DiscordIcon className="w-6 h-6 md:w-8 md:h-8" />,
       href: "https://discord.gg/8f35EBkX",
       label: "Discord",
-      color: "from-indigo-400 to-indigo-600",
+      color: "from-yellow-400 to-amber-600",
     },
     {
-      icon: <TelegramIcon className="w-8 h-8 md:w-10 md:h-10" />,
+      icon: <TelegramIcon className="w-6 h-6 md:w-8 md:h-8" />,
       href: "https://web.telegram.org/a/#7923585285",
       label: "Telegram",
-      color: "from-sky-400 to-sky-600",
+      color: "from-yellow-400 to-amber-600",
     },
   ]
 
   // Ссылки на сообщество для списка в футере
   const communityLinks = [
-    { label: "Twitter", href: "https://x.com/MonadMonster", icon: <TwitterIcon className="w-5 h-5" /> },
-    { label: "Discord", href: "https://discord.gg/8f35EBkX", icon: <DiscordIcon className="w-5 h-5" /> },
-    { label: "Telegram", href: "https://web.telegram.org/a/#7923585285", icon: <TelegramIcon className="w-5 h-5" /> },
+    { label: "Twitter", href: "https://x.com/MonadMonster", icon: <TwitterIcon className="w-4 h-4 sm:w-5 sm:h-5" /> },
+    { label: "Discord", href: "https://discord.gg/8f35EBkX", icon: <DiscordIcon className="w-4 h-4 sm:w-5 sm:h-5" /> },
+    {
+      label: "Telegram",
+      href: "https://web.telegram.org/a/#7923585285",
+      icon: <TelegramIcon className="w-4 h-4 sm:w-5 sm:h-5" />,
+    },
   ]
 
   return (
-    <footer className="mt-24 border-t border-white/10 bg-gradient-to-b from-transparent to-purple-950/30 pt-12 pb-6">
+    <footer className="mt-8 sm:mt-12 md:mt-16 lg:mt-24 border-t border-white/10 bg-gradient-to-b from-transparent to-yellow-950/30 pt-6 sm:pt-8 md:pt-12 pb-4 sm:pb-6">
       <div className="container mx-auto px-4">
         {/* Большие иконки социальных сетей в верхней части футера */}
-        <div className="flex justify-center mb-12">
-          <div className="grid grid-cols-3 gap-6 md:gap-10 max-w-md mx-auto">
+        <div className="flex justify-center mb-8 sm:mb-12">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-xs sm:max-w-md mx-auto">
             {socialLinks.map((social) => (
               <motion.a
                 key={social.href}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-4 md:p-6 rounded-2xl bg-gradient-to-br ${social.color} hover:shadow-xl transition-all duration-300 flex items-center justify-center`}
+                className={`p-3 sm:p-4 md:p-6 rounded-2xl bg-gradient-to-br ${social.color} hover:shadow-xl transition-all duration-300 flex items-center justify-center`}
                 variants={socialIconAnimation}
                 whileHover="whileHover"
                 whileTap="whileTap"
@@ -91,32 +95,25 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-4">
           {/* Логотип и информация */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-d32hBpROUhubCe7Q2v3TjQIcJmDd8U.png"
-                alt="Momon Logo"
-                width={40}
-                height={40}
-                className="object-contain"
-              />
-              <span className="text-lg font-bold text-white">MonadMonster</span>
+              <BnbMonsterLogo size={32} />
             </Link>
-            <p className="text-sm text-gray-400 mb-4 max-w-xs">
+            <p className="text-xs sm:text-sm text-gray-400 mb-4 max-w-xs">
               {locale === "ru"
-                ? "Коллекция уникальных NFT монстров на блокчейне Monad с игровыми механиками и стейкингом."
-                : "A collection of unique monster NFTs on the Monad blockchain with gaming mechanics and staking rewards."}
+                ? "Коллекция уникальных NFT монстров на блокчейне BNB с игровыми механиками и стейкингом."
+                : "A collection of unique monster NFTs on the BNB blockchain with gaming mechanics and staking rewards."}
             </p>
           </div>
 
           {/* Ресурсы */}
           <div>
-            <h3 className="text-small font-semibold text-white uppercase tracking-wider mb-4 text-spacing-wide">
+            <h3 className="text-xs sm:text-sm font-semibold text-white uppercase tracking-wider mb-3 sm:mb-4 text-spacing-wide">
               {texts.resources}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1 sm:space-y-2">
               {[
                 { label: texts.whitepaper, href: "/whitepaper" },
                 { label: texts.docs, href: "/docs" },
@@ -124,7 +121,10 @@ export function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <motion.div whileHover="whileHover" variants={linkAnimation}>
-                    <Link href={item.href} className="text-gray-400 hover:text-pink-400 text-small transition-colors">
+                    <Link
+                      href={item.href}
+                      className="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-colors"
+                    >
                       {item.label}
                     </Link>
                   </motion.div>
@@ -135,14 +135,16 @@ export function Footer() {
 
           {/* Сообщество */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">{texts.community}</h3>
-            <ul className="space-y-2">
+            <h3 className="text-xs sm:text-sm font-semibold text-white uppercase tracking-wider mb-3 sm:mb-4">
+              {texts.community}
+            </h3>
+            <ul className="space-y-1 sm:space-y-2">
               {communityLinks.map((item) => (
                 <li key={item.href}>
                   <motion.div whileHover="whileHover" variants={linkAnimation}>
                     <Link
                       href={item.href}
-                      className="text-gray-400 hover:text-pink-400 text-sm transition-colors flex items-center gap-2"
+                      className="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-colors flex items-center gap-2"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -157,15 +159,20 @@ export function Footer() {
 
           {/* Правовая информация */}
           <div>
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">{texts.legal}</h3>
-            <ul className="space-y-2">
+            <h3 className="text-xs sm:text-sm font-semibold text-white uppercase tracking-wider mb-3 sm:mb-4">
+              {texts.legal}
+            </h3>
+            <ul className="space-y-1 sm:space-y-2">
               {[
                 { label: texts.terms, href: "/terms" },
                 { label: texts.privacy, href: "/privacy" },
               ].map((item) => (
                 <li key={item.href}>
                   <motion.div whileHover="whileHover" variants={linkAnimation}>
-                    <Link href={item.href} className="text-gray-400 hover:text-pink-400 text-sm transition-colors">
+                    <Link
+                      href={item.href}
+                      className="text-gray-400 hover:text-yellow-400 text-xs sm:text-sm transition-colors"
+                    >
                       {item.label}
                     </Link>
                   </motion.div>
@@ -175,12 +182,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-small text-gray-400 mb-4 md:mb-0">{texts.copyright}</p>
+        <div className="mt-8 sm:mt-12 pt-4 sm:pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-xs sm:text-sm text-gray-400 mb-3 md:mb-0 text-center md:text-left">
+            {locale === "ru"
+              ? `© ${new Date().getFullYear()} BNBMonster NFT. Все права защищены.`
+              : `© ${new Date().getFullYear()} BNBMonster NFT. All rights reserved.`}
+          </p>
           <div className="flex items-center gap-1 text-xs text-gray-400">
             <span>{texts.madeWith}</span>
-            <Heart className="w-3 h-3 text-pink-500 fill-pink-500" />
-            <span>{texts.byTeam}</span>
+            <Heart className="w-3 h-3 text-yellow-500 fill-yellow-500" />
+            <span>{texts.byTeam.replace("MonadMonster", "BNBMonster")}</span>
           </div>
         </div>
       </div>

@@ -37,11 +37,11 @@ function HomeContent() {
       learnMoreText: translations.common?.learnMore || "Learn More",
       featuredMonstersText: translations.sections?.featuredMonsters || "Featured Monsters",
       breedingLabText: translations.sections?.breedingLab || "Breeding Lab",
-      aboutTitleText: translations.sections?.aboutTitle || "About Momon NFT",
-      aboutText1: translations.sections?.aboutText1 || "Momon is a collection of charismatic monster NFTs.",
+      aboutTitleText: translations.sections?.aboutTitle || "About BNB Monster NFT",
+      aboutText1: translations.sections?.aboutText1 || "BNB Monster is a collection of charismatic monster NFTs.",
       aboutText2: translations.sections?.aboutText2 || "Their bodies resemble inflated memcoins covered with graffiti.",
-      copyrightText: translations.footer?.copyright || "© 2023 MomonVerse. All rights reserved.",
-      poweredByText: translations.footer?.poweredBy || "Powered by Monad",
+      copyrightText: translations.footer?.copyright || "© 2023 BNB Monster. All rights reserved.",
+      poweredByText: translations.footer?.poweredBy || "Powered by BNB",
       warningText: translations.footer?.warning || "Warning: This site may cause excessive happiness.",
       // Добавляем перевод для кнопки игры
       playGame: locale === "ru" ? "Играть в Защитника от Монстров" : "Play Monster Defender",
@@ -95,8 +95,8 @@ function HomeContent() {
           <motion.div className="text-center" variants={itemVariants}>
             <p className="text-sm md:text-base text-yellow-300 font-medium mt-1 animate-pulse">
               {locale === "ru"
-                ? "Самая горячая мем-монета на блокчейне Monad!"
-                : "The hottest meme coin on Monad blockchain!"}
+                ? "Самая горячая мем-монета на блокчейне BNB!"
+                : "The hottest meme coin on BNB blockchain!"}
             </p>
           </motion.div>
 
@@ -113,8 +113,8 @@ function HomeContent() {
                 <div className="flex flex-col items-center">
                   <div className="mb-4">
                     <Image
-                      src="/images/momon-logo.png"
-                      alt="Momon Logo"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/android-chrome-512x512-mzpZcLlZpfmk9fYVHTXFOA1kfExO9k.png"
+                      alt="BNB Monster Logo"
                       width={100}
                       height={100}
                       className="object-contain animate-bounce"
@@ -122,10 +122,10 @@ function HomeContent() {
                   </div>
                   <Link href="/game">
                     <Button
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-xl py-8 px-12 rounded-xl shadow-lg shadow-pink-500/20 hover:shadow-pink-500/40 transition-all duration-300 animate-pulse group"
+                      className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold text-xl py-8 px-12 rounded-xl shadow-lg shadow-yellow-500/30 hover:shadow-yellow-500/50 transition-all duration-300 animate-pulse group"
                       size="lg"
                     >
-                      <Gamepad className="w-6 h-6 mr-3 group-hover:animate-wiggle" aria-hidden="true" />
+                      <Gamepad className="w-6 h-6 mr-3 text-black group-hover:animate-wiggle" aria-hidden="true" />
                       {translatedTexts.playGame}
                     </Button>
                   </Link>
@@ -140,7 +140,9 @@ function HomeContent() {
               <span className="animate-bounce inline-block text-2xl" aria-hidden="true">
                 🔥
               </span>
-              <h2 className="text-title gradient-text-secondary">{translatedTexts.featuredMonstersText}</h2>
+              <h2 className="text-title text-yellow-400">
+                {locale === "ru" ? "Популярные BNBMonster" : "Featured BNBMonster"}
+              </h2>
               <span className="animate-bounce inline-block text-2xl" aria-hidden="true">
                 🔥
               </span>
@@ -150,11 +152,11 @@ function HomeContent() {
 
           {/* Breeding lab section */}
           <motion.section
-            className="my-16 bg-gradient-to-br from-black/30 to-purple-900/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border-2 border-dashed border-pink-500 animate-border-pulse"
+            className="my-16 bg-gradient-to-br from-black/30 to-yellow-900/20 p-6 md:p-8 rounded-2xl backdrop-blur-sm border-2 border-dashed border-yellow-500 animate-border-pulse"
             variants={itemVariants}
           >
             <div className="flex items-center justify-center gap-3 mb-8">
-              <h2 className="text-title gradient-text-secondary">{translatedTexts.breedingLabText}</h2>
+              <h2 className="text-title text-yellow-400">{translatedTexts.breedingLabText}</h2>
             </div>
             <BreedingLab />
           </motion.section>

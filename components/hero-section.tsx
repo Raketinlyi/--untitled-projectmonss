@@ -50,8 +50,8 @@ export function HeroSection() {
         name: "Greeny",
         image:
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c95ef971-ca36-4990-85f5-0964bdcfd12f-1xiPm83iAhP9X4ZXHqQcxK7qd8JhIh.png",
-        description: "The happiest MonadMonster with lime energy and boundless enthusiasm!",
-        descriptionRu: "Самый счастливый MonadMonster с лаймовой энергией и безграничным энтузиазмом!",
+        description: "The happiest BNBMonster with lime energy and boundless enthusiasm!",
+        descriptionRu: "Самый счастливый BNBMonster с лаймовой энергией и безграничным энтузиазмом!",
         rarity: "Common",
         color: "from-green-400 to-lime-500",
       },
@@ -60,8 +60,8 @@ export function HeroSection() {
         name: "Aqua",
         image:
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8ac455a5-48b0-48fc-b281-e0f65f7f2c6d-SNetSWqdmtDR4gISf6L1B2txMQdbEb.png",
-        description: "The chill MonadMonster with laid-back vibes and ocean wisdom.",
-        descriptionRu: "Спокойный MonadMonster с расслабленной атмосферой и мудростью океана.",
+        description: "The chill BNBMonster with laid-back vibes and ocean wisdom.",
+        descriptionRu: "Спокойный BNBMonster с расслабленной атмосферой и мудростью океана.",
         rarity: "Rare",
         color: "from-blue-400 to-cyan-500",
       },
@@ -70,8 +70,8 @@ export function HeroSection() {
         name: "Purply",
         image:
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/68d56a43-41e6-4efd-bc1a-92a8d6985612-QoXIJH3cGbNcKhVk6V9E8UnuJAkG5S.png",
-        description: "The wildest MonadMonster with chaotic energy and a hunger for adventure!",
-        descriptionRu: "Самый дикий MonadMonster с хаотичной энергией и жаждой приключений!",
+        description: "The wildest BNBMonster with chaotic energy and a hunger for adventure!",
+        descriptionRu: "Самый дикий BNBMonster с хаотичной энергией и жаждой приключений!",
         rarity: "Epic",
         color: "from-purple-400 to-indigo-500",
       },
@@ -80,8 +80,8 @@ export function HeroSection() {
         name: "Pinky",
         image:
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/68522fbc-f35b-4416-8ac3-d0e783ba5714-elFuXplIykv79gn5XXNdxcqHFfGhOY.png",
-        description: "The smooth MonadMonster with style, sass, and a mysterious smile.",
-        descriptionRu: "Гладкий MonadMonster со стилем, дерзостью и загадочной улыбкой.",
+        description: "The smooth BNBMonster with style, sass, and a mysterious smile.",
+        descriptionRu: "Гладкий BNBMonster со стилем, дерзостью и загадочной улыбкой.",
         rarity: "Legendary",
         color: "from-pink-400 to-rose-500",
       },
@@ -90,8 +90,8 @@ export function HeroSection() {
         name: "Chompy",
         image:
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/e63a0f33-b60a-4366-832d-f6e3442b9ad9-LCRlrOfUwlaT2IYxlRQE313572hMya.png",
-        description: "The excitable MonadMonster with a big appetite for fun and mischief!",
-        descriptionRu: "Возбудимый MonadMonster с большим аппетитом к веселью и озорству!",
+        description: "The excitable BNBMonster with a big appetite for fun and mischief!",
+        descriptionRu: "Возбудимый BNBMonster с большим аппетитом к веселью и озорству!",
         rarity: "Uncommon",
         color: "from-yellow-400 to-amber-500",
       },
@@ -153,17 +153,17 @@ export function HeroSection() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl backdrop-blur-sm bg-gradient-to-br from-purple-900/40 to-pink-600/40 border border-white/10 shadow-2xl">
+    <div className="relative overflow-hidden rounded-3xl backdrop-blur-sm bg-gradient-to-br from-yellow-900/40 to-amber-800/40 border border-yellow-500/10 shadow-2xl">
       {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-800/30 to-pink-600/30 mix-blend-multiply z-10"></div>
-      <div className="absolute -inset-1/2 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-pink-500/30 via-purple-500/30 to-transparent animate-pulse"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-yellow-800/30 to-amber-700/30 mix-blend-multiply z-10"></div>
+      <div className="absolute -inset-1/2 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/30 via-amber-500/30 to-transparent animate-pulse"></div>
 
       {/* Блики */}
-      <div className="absolute top-0 left-1/4 w-20 h-20 bg-pink-500/20 rounded-full blur-xl"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-32 h-32 bg-purple-500/20 rounded-full blur-xl"></div>
+      <div className="absolute top-0 left-1/4 w-20 h-20 bg-yellow-500/20 rounded-full blur-xl"></div>
+      <div className="absolute bottom-1/4 right-1/3 w-32 h-32 bg-amber-500/20 rounded-full blur-xl"></div>
 
       <motion.div
-        className="relative z-20 grid md:grid-cols-2 gap-8 items-center p-4 md:p-8 lg:p-16"
+        className="relative z-20 grid md:grid-cols-2 gap-6 sm:gap-8 items-center p-4 sm:p-6 md:p-8 lg:p-12"
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         variants={containerVariants}
@@ -171,44 +171,50 @@ export function HeroSection() {
         <div>
           <motion.div variants={itemVariants}>
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-16 h-16 overflow-hidden rounded-full border-2 border-pink-500/50 shadow-lg shadow-pink-500/20">
-                <Image src="/images/momon-logo.png" alt="Momon Logo" fill className="object-contain p-1" sizes="64px" />
+              <div className="relative w-12 h-12 sm:w-16 sm:h-16 overflow-hidden rounded-full border-2 border-yellow-500/50 shadow-lg shadow-yellow-500/20">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/android-chrome-512x512-mzpZcLlZpfmk9fYVHTXFOA1kfExO9k.png"
+                  alt="BNB Monster Logo"
+                  fill
+                  className="object-contain p-1"
+                  sizes="(max-width: 640px) 48px, 64px"
+                />
               </div>
             </div>
           </motion.div>
 
           <motion.h1
-            className="text-display font-extrabold mb-6 text-white leading-tight tracking-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white leading-tight tracking-tight"
             variants={itemVariants}
           >
             <span className="inline-block">{titleParts[0] || "Collect"},</span>{" "}
             <span className="inline-block">{titleParts[1] || "Breed"}</span> <span className="inline-block">&</span>{" "}
             <span className="inline-block">{titleParts[2] || "Trade"}</span>
             <br />
-            <span className="gradient-text-primary animate-gradient drop-shadow-lg">MonadMonster NFTs</span>
+            <span className="text-yellow-400 animate-gradient drop-shadow-lg">BNBMonster NFTs</span>
           </motion.h1>
 
           <motion.div
-            className="bg-gradient-to-r from-yellow-500/20 to-amber-500/20 px-4 py-1.5 rounded-full inline-block mb-4"
+            className="bg-gradient-to-r from-yellow-500/30 to-amber-500/30 px-3 sm:px-4 py-1.5 rounded-full inline-block mb-3 sm:mb-4"
             variants={itemVariants}
           >
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-yellow-300" />
               <p className="text-yellow-300 font-bold text-sm">
-                {locale === "ru" ? "МЕМ-МОНЕТА С УТИЛИТОЙ" : "MEME COIN WITH UTILITY"}
+                {locale === "ru" ? "МЕМ-МОНЕТА BNB С УТИЛИТОЙ" : "BNB MEME COIN WITH UTILITY"}
               </p>
             </div>
           </motion.div>
 
-          <motion.p className="text-body md:text-subtitle text-gray-200 mb-8 max-w-2xl" variants={itemVariants}>
+          <motion.p className="text-body text-gray-200 mb-6 sm:mb-8 max-w-2xl" variants={itemVariants}>
             {heroSubtitle}
           </motion.p>
 
-          <motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
+          <motion.div className="flex flex-wrap gap-3 sm:gap-4" variants={itemVariants}>
             <Link href="/collection">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-none font-bold shadow-lg shadow-pink-500/20 transition-all duration-300 transform hover:scale-105 group"
+                className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black border-none font-bold shadow-lg shadow-yellow-500/20 transition-all duration-300 transform hover:scale-105 group"
               >
                 {exploreButton}
                 <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
@@ -226,7 +232,7 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        <div className="relative h-64 md:h-80 lg:h-96">
+        <div className="relative h-48 sm:h-64 md:h-80 lg:h-96">
           <AnimatePresence mode="wait">
             <motion.div
               key={monsters[currentMonster].id}
@@ -239,14 +245,14 @@ export function HeroSection() {
               onMouseLeave={handleMouseLeave}
               onClick={() => handleMonsterClick((currentMonster + 1) % monsters.length)}
             >
-              <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 transition-transform duration-300 filter drop-shadow-[0_0_15px_rgba(255,105,180,0.5)]">
+              <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 transition-transform duration-300 filter drop-shadow-[0_0_15px_rgba(255,204,0,0.5)]">
                 <Image
                   src={monsters[currentMonster].image || "/placeholder.svg"}
                   alt={`${monsters[currentMonster].name} - ${locale === "ru" ? monsters[currentMonster].descriptionRu : monsters[currentMonster].description}`}
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 768px) 192px, (max-width: 1200px) 256px, 320px"
+                  sizes="(max-width: 640px) 144px, (max-width: 768px) 192px, (max-width: 1200px) 256px, 320px"
                 />
 
                 {/* Эффект свечения вокруг монстра */}
@@ -259,20 +265,20 @@ export function HeroSection() {
 
           {/* Информация о текущем монстре */}
           <motion.div
-            className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10"
+            className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
             <div className="flex items-center justify-between mb-1">
-              <h3 className="text-xl font-bold text-white">{monsters[currentMonster].name}</h3>
+              <h3 className="text-lg sm:text-xl font-heading font-bold text-white">{monsters[currentMonster].name}</h3>
               <span
                 className={`text-xs font-medium px-2 py-0.5 rounded-full bg-gradient-to-r ${monsters[currentMonster].color}`}
               >
                 {monsters[currentMonster].rarity}
               </span>
             </div>
-            <p className="text-gray-200 text-sm">{currentDescription}</p>
+            <p className="text-gray-200 text-xs sm:text-sm">{currentDescription}</p>
           </motion.div>
         </div>
       </motion.div>
@@ -283,9 +289,9 @@ export function HeroSection() {
           <button
             key={index}
             onClick={() => handleMonsterClick(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 ${
               index === currentMonster
-                ? `bg-gradient-to-r ${monsters[index].color} w-6`
+                ? `bg-gradient-to-r ${monsters[index].color} w-4 sm:w-6`
                 : "bg-white/30 hover:bg-white/50"
             }`}
             aria-label={

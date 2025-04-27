@@ -2,17 +2,17 @@
 
 import { useState, useCallback } from "react"
 
-// Monad Testnet configuration
+// BNB Testnet configuration
 export const MONAD_TESTNET_CONFIG = {
-  chainId: "0x1657", // Chain ID in hex (5719 in decimal)
-  chainName: "Monad Testnet",
+  chainId: "0x539", // Chain ID in hex (97 in decimal)
+  chainName: "BNB Testnet",
   nativeCurrency: {
-    name: "MON",
-    symbol: "MON",
+    name: "BNB",
+    symbol: "BNB",
     decimals: 18,
   },
-  rpcUrls: ["https://rpc.testnet.monad.xyz/"],
-  blockExplorerUrls: ["https://explorer.testnet.monad.xyz/"],
+  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545/"],
+  blockExplorerUrls: ["https://testnet.bscscan.com/"],
 }
 
 export type WalletState = {

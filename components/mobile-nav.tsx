@@ -63,7 +63,7 @@ export function MobileNav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[72px] bg-gradient-to-b from-purple-900/95 to-indigo-900/95 backdrop-blur-lg shadow-lg z-50 border-b border-white/10"
+            className="fixed inset-x-0 top-[72px] bg-gradient-to-b from-yellow-900/95 to-yellow-800/95 backdrop-blur-lg shadow-lg z-50 border-b border-white/10"
           >
             <div className="container mx-auto p-4">
               <nav className="flex flex-col space-y-4">
@@ -79,7 +79,7 @@ export function MobileNav() {
                     href={link.href}
                     onClick={closeMenu}
                     className={`py-2 px-4 rounded-md transition-colors ${
-                      isActive(link.href) ? "bg-pink-500/20 text-pink-400" : "text-white hover:bg-white/10"
+                      isActive(link.href) ? "bg-yellow-500/20 text-yellow-400" : "text-white hover:bg-white/10"
                     }`}
                   >
                     {link.label}
@@ -94,7 +94,7 @@ export function MobileNav() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-full ${social.color} text-white/90 hover:text-white transition-all duration-200 shadow-md hover:shadow-pink-500/20`}
+                      className={`p-3 rounded-full ${social.color} text-white/90 hover:text-white transition-all duration-200 shadow-md hover:shadow-yellow-500/20`}
                       aria-label={social.label}
                     >
                       {social.icon}

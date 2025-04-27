@@ -39,13 +39,13 @@ export function AnimatedBackground() {
     const particles: Particle[] = []
     const particleCount = Math.min(Math.max(window.innerWidth / 20, 20), 80) // Адаптивное количество частиц
 
-    // Цвета для частиц
+    // Цвета для частиц в стиле BNB
     const colors = [
-      "rgba(50, 50, 255, 0.5)", // Синий
-      "rgba(100, 50, 200, 0.5)", // Фиолетовый
-      "rgba(200, 50, 100, 0.5)", // Розовый
-      "rgba(255, 50, 50, 0.5)", // Красный
-      "rgba(50, 200, 50, 0.5)", // Зеленый
+      "rgba(255, 204, 0, 0.5)", // Желтый (BNB)
+      "rgba(247, 147, 26, 0.5)", // Оранжевый (BNB)
+      "rgba(255, 180, 0, 0.5)", // Золотой
+      "rgba(255, 220, 0, 0.5)", // Светло-желтый
+      "rgba(255, 165, 0, 0.5)", // Оранжевый
     ]
 
     // Инициализируем частицы
@@ -115,7 +115,7 @@ export function AnimatedBackground() {
             // Градиентная прозрачность линий в зависимости от расстояния
             const opacity = 0.1 * (1 - distance / maxDistance)
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(100, 100, 255, ${opacity})`
+            ctx.strokeStyle = `rgba(255, 204, 0, ${opacity})`
             ctx.lineWidth = 0.2 // Тонкие линии
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)

@@ -37,36 +37,36 @@ export function AboutSection({ title, text1, text2, locale }: AboutSectionProps)
 
   return (
     <motion.section
-      className="my-16"
+      className="my-8 sm:my-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
     >
-      <Card className="bg-gradient-to-br from-purple-900/30 to-indigo-900/30 border border-white/10 backdrop-blur-md overflow-hidden hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-500">
-        <CardContent className="p-6 md:p-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      <Card className="bg-gradient-to-br from-yellow-900/30 to-amber-900/30 border border-yellow-500/10 backdrop-blur-md overflow-hidden hover:shadow-2xl hover:shadow-yellow-500/30 transition-all duration-500">
+        <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <motion.div variants={itemVariants}>
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-500/20">
-                  <Info className="w-5 h-5 text-pink-400" />
+                <div className="p-2 rounded-full bg-gradient-to-r from-yellow-500/20 to-amber-500/20">
+                  <Info className="w-5 h-5 text-yellow-400" />
                 </div>
-                <h2 className="text-title gradient-text-secondary">{title}</h2>
+                <h2 className="text-title font-heading text-yellow-400">{title.replace("Monad", "BNB")}</h2>
               </div>
 
-              <p className="text-body text-gray-200 mb-5 leading-relaxed">{text1}</p>
-              <p className="text-body text-gray-200 mb-5 leading-relaxed">{text2}</p>
+              <p className="text-body text-gray-200 mb-4 sm:mb-5 leading-relaxed">{text1}</p>
+              <p className="text-body text-gray-200 mb-4 sm:mb-5 leading-relaxed">{text2}</p>
 
-              <div className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 p-4 rounded-lg mb-6">
-                <p className="text-orange-300 font-medium text-body">
+              <div className="bg-gradient-to-r from-yellow-500/20 to-amber-500/20 p-3 sm:p-4 rounded-lg mb-5 sm:mb-6">
+                <p className="text-yellow-300 font-medium text-body">
                   {locale === "ru"
-                    ? "MOMON NFTs – это коллекция мем-монстров с реальной утилитой!"
-                    : "MOMON NFTs – a collection of meme monsters with real utility!"}
+                    ? "BNB NFTs – это коллекция мем-монстров с реальной утилитой!"
+                    : "BNB NFTs – a collection of meme monsters with real utility!"}
                 </p>
               </div>
 
               <Link href="/about">
-                <Button className="bg-gradient-to-r from-lime-500 to-cyan-500 hover:from-lime-600 hover:to-cyan-600 text-black font-bold shadow-lg shadow-lime-500/20 transition-all duration-300 transform hover:scale-105 group">
+                <Button className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold shadow-lg shadow-yellow-500/20 transition-all duration-300 transform hover:scale-105 group">
                   {translations.common?.learnMore || "Learn More"}
                   <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -74,10 +74,10 @@ export function AboutSection({ title, text1, text2, locale }: AboutSectionProps)
             </motion.div>
 
             <motion.div
-              className="relative h-64 md:h-80 overflow-hidden rounded-xl group shadow-2xl shadow-purple-500/20"
+              className="relative h-40 sm:h-48 md:h-64 lg:h-80 overflow-hidden rounded-xl group shadow-2xl shadow-yellow-500/20"
               variants={itemVariants}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/30 mix-blend-overlay z-10 rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/30 to-amber-500/30 mix-blend-overlay z-10 rounded-xl"></div>
 
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1234.jpg-XJYUoy5GV3fieKtUrRXoN9HxU6RfRE.jpeg"
@@ -94,8 +94,8 @@ export function AboutSection({ title, text1, text2, locale }: AboutSectionProps)
               </div>
 
               {/* Декоративные элементы */}
-              <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-70 blur-md"></div>
-              <div className="absolute bottom-12 left-6 w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 opacity-70 blur-md"></div>
+              <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 opacity-70 blur-md"></div>
+              <div className="absolute bottom-12 left-6 w-8 h-8 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 opacity-70 blur-md"></div>
             </motion.div>
           </div>
         </CardContent>

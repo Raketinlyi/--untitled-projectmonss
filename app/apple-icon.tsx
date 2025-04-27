@@ -13,7 +13,7 @@ export default function Icon() {
   return new ImageResponse(
     <div
       style={{
-        background: "#8A70D6", // Фиолетовый цвет как на логотипе
+        background: "#F2B705", // Желтый цвет как на логотипе
         width: "100%",
         height: "100%",
         display: "flex",
@@ -26,7 +26,7 @@ export default function Icon() {
         style={{
           width: "60%",
           height: "60%",
-          background: "#FF5E94", // Розовый цвет как на логотипе
+          background: "#000000", // Черный цвет для внутреннего элемента
           borderRadius: "50%", // Круглая форма для внутреннего элемента
         }}
       />

@@ -1,38 +1,37 @@
 "use client"
 
-import { useMemo } from "react"
+import { useState } from "react"
 import Image from "next/image"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Info, Heart, Sparkles } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useI18n } from "@/lib/i18n-context"
-import { useWallet } from "@/lib/wallet-connect"
 
 interface Monster {
   id: string
   name: string
   image: string
   rarity: string
-  price: string
   traits: string[]
+  price: string
 }
 
 export function MonsterCollection() {
-  const { translations, locale } = useI18n()
-  const { ownedNFTs, address } = useWallet()
-  const isWalletConnected = !!address
+  const { locale } = useI18n()
+  const [selectedMonster, setSelectedMonster] = useState<Monster | null>(null)
 
   // Локализованные тексты
   const texts = {
-    viewDetails: translations.monsters?.viewDetails || "View Details",
-    viewTraits: locale === "ru" ? "Просмотр характеристик" : "View monster traits",
-    addToFavorites: locale === "ru" ? "Добавить в избранное" : "Add to favorites",
-    viewSpecialAbilities: locale === "ru" ? "Просмотр особых способностей" : "View special abilities",
+    viewDetails: locale === "ru" ? "Подробнее" : "View Details",
+    close: locale === "ru" ? "Закрыть" : "Close",
+    traits: locale === "ru" ? "Характеристики" : "Traits",
+    price: locale === "ru" ? "Цена" : "Price",
+    noMonsters:
+      locale === "ru" ? "У вас пока нет монстров в коллекции" : "You don't have any monsters in your collection yet",
   }
 
-  // Monster data
+  // Данные о монстрах
   const monsters: Monster[] = [
     {
       id: "1",
@@ -40,8 +39,12 @@ export function MonsterCollection() {
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c95ef971-ca36-4990-85f5-0964bdcfd12f-1xiPm83iAhP9X4ZXHqQcxK7qd8JhIh.png",
       rarity: "Common",
-      price: "0.05 MON",
-      traits: ["happy", "energetic", "friendly"],
+      traits: [
+        locale === "ru" ? "Счастливый" : "Happy",
+        locale === "ru" ? "Энергичный" : "Energetic",
+        locale === "ru" ? "Дружелюбный" : "Friendly",
+      ],
+      price: "0.05 BNB",
     },
     {
       id: "2",
@@ -49,8 +52,12 @@ export function MonsterCollection() {
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8ac455a5-48b0-48fc-b281-e0f65f7f2c6d-SNetSWqdmtDR4gISf6L1B2txMQdbEb.png",
       rarity: "Uncommon",
-      price: "0.08 MON",
-      traits: ["calm", "wise", "mysterious"],
+      traits: [
+        locale === "ru" ? "Спокойный" : "Calm",
+        locale === "ru" ? "Мудрый" : "Wise",
+        locale === "ru" ? "Таинственный" : "Mysterious",
+      ],
+      price: "0.08 BNB",
     },
     {
       id: "3",
@@ -58,8 +65,12 @@ export function MonsterCollection() {
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/68d56a43-41e6-4efd-bc1a-92a8d6985612-QoXIJH3cGbNcKhVk6V9E8UnuJAkG5S.png",
       rarity: "Rare",
-      price: "0.15 MON",
-      traits: ["wild", "hungry", "chaotic"],
+      traits: [
+        locale === "ru" ? "Дикий" : "Wild",
+        locale === "ru" ? "Голодный" : "Hungry",
+        locale === "ru" ? "Хитрый" : "Cunning",
+      ],
+      price: "0.15 BNB",
     },
     {
       id: "4",
@@ -67,8 +78,12 @@ export function MonsterCollection() {
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/68522fbc-f35b-4416-8ac3-d0e783ba5714-elFuXplIykv79gn5XXNdxcqHFfGhOY.png",
       rarity: "Uncommon",
-      price: "0.08 MON",
-      traits: ["sassy", "stylish", "smooth"],
+      traits: [
+        locale === "ru" ? "Дерзкий" : "Bold",
+        locale === "ru" ? "Сильный" : "Strong",
+        locale === "ru" ? "Гладкий" : "Smooth",
+      ],
+      price: "0.08 BNB",
     },
     {
       id: "5",
@@ -76,175 +91,122 @@ export function MonsterCollection() {
       image:
         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/e63a0f33-b60a-4366-832d-f6e3442b9ad9-LCRlrOfUwlaT2IYxlRQE313572hMya.png",
       rarity: "Rare",
-      price: "0.12 MON",
-      traits: ["excited", "playful", "mischievous"],
+      traits: [
+        locale === "ru" ? "Возбужденный" : "Excited",
+        locale === "ru" ? "Игривый" : "Playful",
+        locale === "ru" ? "Озорной" : "Mischievous",
+      ],
+      price: "0.12 BNB",
     },
   ]
 
-  // Check if monster is owned - memoize this to avoid recalculations
-  const isMonsterOwned = useMemo(() => {
-    return (id: string) => {
-      return isWalletConnected && ownedNFTs.includes(id)
-    }
-  }, [isWalletConnected, ownedNFTs])
-
-  // Get rarity color and label based on language
-  const getRarityInfo = (rarity: string, isOwned: boolean) => {
-    // If not owned or not connected, show gray
-    if (!isWalletConnected || !isOwned) {
-      return {
-        color: "bg-gray-500 border-gray-400",
-        label: getRarityTranslation(rarity),
-      }
-    }
-
-    // If owned, show colored badge
+  // Получение цвета для редкости
+  const getRarityColor = (rarity: string) => {
     switch (rarity) {
       case "Common":
-        return {
-          color: "bg-green-500 border-green-400",
-          label: getRarityTranslation(rarity),
-        }
+        return "bg-green-500"
       case "Uncommon":
-        return {
-          color: "bg-blue-500 border-blue-400",
-          label: getRarityTranslation(rarity),
-        }
+        return "bg-blue-500"
       case "Rare":
-        return {
-          color: "bg-purple-500 border-purple-400",
-          label: getRarityTranslation(rarity),
-        }
+        return "bg-purple-500"
       case "Epic":
-        return {
-          color: "bg-orange-500 border-orange-400",
-          label: getRarityTranslation(rarity),
-        }
+        return "bg-orange-500"
       case "Legendary":
-        return {
-          color: "bg-yellow-500 border-yellow-400",
-          label: getRarityTranslation(rarity),
-        }
+        return "bg-yellow-500"
       default:
-        return {
-          color: "bg-gray-500 border-gray-400",
-          label: getRarityTranslation(rarity),
-        }
+        return "bg-gray-500"
     }
   }
 
-  // Fix the trait translation function to handle missing translations
-  const getTraitTranslation = (trait: string) => {
-    if (!translations.monsters?.traits) return trait
-    const traits = translations.monsters.traits as Record<string, string>
-    return traits[trait] || trait
+  // Открытие диалога с деталями монстра
+  const openMonsterDetails = (monster: Monster) => {
+    setSelectedMonster(monster)
   }
 
-  // Fix the rarity translation function
-  const getRarityTranslation = (rarity: string) => {
-    // Try to get from translations object first
-    if (translations.rarities && translations.rarities[rarity as keyof typeof translations.rarities]) {
-      return translations.rarities[rarity as keyof typeof translations.rarities]
-    }
-
-    // Fallback for languages without translations
-    return rarity
+  // Закрытие диалога
+  const closeMonsterDetails = () => {
+    setSelectedMonster(null)
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-      {monsters.map((monster) => {
-        const isOwned = isMonsterOwned(monster.id)
-        const rarityInfo = getRarityInfo(monster.rarity, isOwned)
+    <div className="relative">
+      {monsters.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-yellow-300 text-xl">{texts.noMonsters}</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {monsters.map((monster) => (
+            <Card
+              key={monster.id}
+              className="bg-gradient-to-b from-amber-900/80 to-yellow-900/80 border-yellow-500/30 overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition-all duration-300 transform hover:scale-105"
+            >
+              <CardContent className="p-4 flex flex-col items-center">
+                <div className="absolute top-2 right-2">
+                  <Badge className={`${getRarityColor(monster.rarity)} text-white`}>{monster.rarity}</Badge>
+                </div>
+                <div className="relative h-40 w-40 my-4">
+                  <Image src={monster.image || "/placeholder.svg"} alt={monster.name} fill className="object-contain" />
+                </div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">{monster.name}</h3>
+                <div className="flex flex-wrap gap-1 justify-center mb-4">
+                  {monster.traits.slice(0, 3).map((trait, index) => (
+                    <span key={index} className="text-xs text-yellow-200 bg-yellow-900/50 px-2 py-1 rounded-full">
+                      {trait}
+                    </span>
+                  ))}
+                </div>
+                <div className="text-yellow-400 font-bold mb-4">{monster.price}</div>
+                <Button
+                  onClick={() => openMonsterDetails(monster)}
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black"
+                >
+                  {texts.viewDetails}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
 
-        return (
-          <Card
-            key={monster.id}
-            className={`bg-gradient-to-br from-purple-900/40 to-indigo-900/40 rounded-xl p-4 backdrop-blur-sm border border-white/10 shadow-lg hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:scale-105`}
-          >
-            <div className="relative pt-4 px-4">
-              <Badge className={`absolute top-2 right-2 z-10 ${rarityInfo.color} px-3 py-1 text-sm font-medium border`}>
-                {rarityInfo.label}
+      <Dialog open={!!selectedMonster} onOpenChange={closeMonsterDetails}>
+        {selectedMonster && (
+          <DialogContent className="bg-gradient-to-b from-yellow-900 to-amber-900 border-yellow-500/30 text-yellow-100 max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold text-yellow-400 text-center">
+                {selectedMonster.name}
+              </DialogTitle>
+            </DialogHeader>
+            <div className="flex flex-col items-center">
+              <Badge className={`${getRarityColor(selectedMonster.rarity)} text-white mb-4`}>
+                {selectedMonster.rarity}
               </Badge>
-              <div className="relative h-48 w-full overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/50 to-pink-900/50 border border-purple-500/20">
+              <div className="relative h-60 w-60 mb-6">
                 <Image
-                  src={monster.image || "/placeholder.svg"}
-                  alt={`${monster.name} - ${monster.rarity} monster`}
+                  src={selectedMonster.image || "/placeholder.svg"}
+                  alt={selectedMonster.name}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="object-contain"
                 />
               </div>
-            </div>
-
-            <CardContent className="pt-4">
-              <div className="flex justify-between items-center mb-2">
-                <h3 className="text-subtitle font-bold gradient-text-secondary">{monster.name}</h3>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-gray-400 hover:text-white"
-                        aria-label={texts.viewTraits}
-                      >
-                        <Info className="h-4 w-4" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <div className="space-y-1">
-                        <p className="font-bold">{locale === "ru" ? "Характеристики:" : "Traits:"}</p>
-                        <ul className="text-xs">
-                          {monster.traits.map((trait, i) => (
-                            <li key={i}>{getTraitTranslation(trait)}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-
-              <div className="flex flex-wrap gap-1 mb-3">
-                {monster.traits.map((trait, i) => (
-                  <span key={i} className="text-small px-2 py-1 bg-white/10 rounded-full text-gray-300">
-                    {getTraitTranslation(trait)}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex justify-between items-center">
-                <p className="text-body font-medium text-white">{monster.price}</p>
-                <div className="flex gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-gray-400 hover:text-pink-500"
-                    aria-label={texts.addToFavorites}
-                  >
-                    <Heart className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-gray-400 hover:text-yellow-500"
-                    aria-label={texts.viewSpecialAbilities}
-                  >
-                    <Sparkles className="h-4 w-4" />
-                  </Button>
+              <div className="w-full">
+                <h4 className="text-lg font-semibold text-yellow-400 mb-2">{texts.traits}</h4>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {selectedMonster.traits.map((trait, index) => (
+                    <span key={index} className="text-sm bg-yellow-800/50 px-3 py-1 rounded-full text-yellow-200">
+                      {trait}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex justify-between items-center border-t border-yellow-500/30 pt-4 mt-4">
+                  <span className="text-yellow-300">{texts.price}</span>
+                  <span className="text-xl font-bold text-yellow-400">{selectedMonster.price}</span>
                 </div>
               </div>
-            </CardContent>
-
-            <CardFooter className="pt-0">
-              <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white shadow-lg shadow-pink-500/20 transition-all duration-300">
-                {texts.viewDetails}
-              </Button>
-            </CardFooter>
-          </Card>
-        )
-      })}
+            </div>
+          </DialogContent>
+        )}
+      </Dialog>
     </div>
   )
 }
